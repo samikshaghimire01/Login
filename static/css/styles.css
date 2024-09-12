@@ -1,9 +1,21 @@
 
 .btn-custom{
-    background-color: orangered !important;
-    color: white !important;
+    background-color: #d4a23d !important;
+    color: black !important;
     border: none !important;
+    text-transform: capitalize;
 }
+
+input[type="email"]::placeholder{
+    color:rgb(0, 0, 0);
+}
+input[type="password"]::placeholder{
+    color:rgb(0, 0, 0);
+}
+input[type="Username"]::placeholder{
+    color:rgb(0, 0, 0);
+}
+
 .bg-light{
     background-color: rgb(231, 231, 231, 231) !important;
 }

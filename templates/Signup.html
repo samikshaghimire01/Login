@@ -1,6 +1,4 @@
-
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=12">
     <title>Registration Form</title>
 </head>
 <body class="bg-light">
@@ -18,53 +16,46 @@
         {% csrf_token %}
         <div class="row justify-content-center align-items-center">
             <div class="col-l-8 p-5 w-50 text-center">
-                <h1 class="my-3">Your Data is safe</h1>
+                <h1 class="my-3"> Hi Dear, Sign Up</h1> 
                 <div class="my-3">
-                    <img src="/static/images/google logo.webp" alt="google"
+                    <img src="/static/images/logo.jpg" alt="google"
                      class= "img-fluid w-25" alt="image">
                 </div>
                 
                 <div class="mb-3">
                     <input type="Username" name="user" class="form-control
                      shadow-none rounded-pill p-3" 
-                     placeholder="Username">
+                     placeholder="Username" required>
                 </div>
 
                 <div class="mb-3">
-                    <input type="email" name="email" class="form-control
+                    <input type="email" name="email" class="form-control 
                      shadow-none rounded-pill p-3" 
-                     placeholder="Email">
+                     placeholder="Email" required>
                 </div>
             
                 <div class="mb-3">
                     <input type="password" name="pass1" class="form-control
                      shadow-none rounded-pill p-3" 
-                     placeholder="Password">
+                     placeholder="Password" required>
                 </div>
                 <div class="mb-3">
                     <input type="password"  name="pass2" class="form-control
                      shadow-none rounded-pill p-3"  
-                     placeholder=" Confirm Password">
+                     placeholder=" Confirm Password" required>
                 </div>
             
             <div class="mb-3">
-                <button class="btn btn-primary btn-custom
+                <button class="btn btn-custom 
                  shadow-none p-3 w-100 rounded-pill" type="submit">
                       Sign Up
                       
                 </button>
             </div>
 
-            <div class="mb-3">
-                <button class="btn btn-outline-dark 
-                shadow-none p-3 rounded-pill">
-                 Connect with Facebook
-                </button>
-            </div>
-
             <div class="my-2">
-                <p> Already registered? Login
-                    <a href="{% url 'login' %}">Here</a></p>
+                <p> Already registered? 
+                    <a href="{% url 'login' %}"  class="text-muted" >Login</a></p>
             </div>
            
         </div><!--end col-8 -->

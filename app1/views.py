@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import HttpResponseForbidden
 
 # Home page - requires login
-# @login_required(login_url='Login')
+@login_required(login_url='login')
 def HomePage(request):
     return render(request, 'home.html')
 
@@ -20,7 +21,26 @@ def SignupPage(request):
         # Check if passwords match
         if pass1 != pass2:
             return HttpResponse("Your password and confirm password do not match!")
+       
+        if len(pass1) < 8:
+            return HttpResponse("Password is too short. It must be at least 8 characters.")
 
+        if not any(char.isupper() for char in pass1):
+            return HttpResponse(("Password must contain at least one uppercase letter.")   
+            )
+        if not any(char.islower() for char in pass1):
+            return HttpResponse(("Password must contain at least one lowercase letter.")     
+             )
+         # Check for at least one digit
+        if not any(char.isdigit() for char in pass1):
+           return HttpResponse(("Password must contain at least one digit.")
+                   )
+        #   Check for at least one special character
+        special_characters = "!@#$%^&*()-+"
+        if not any(char in special_characters for char in pass1):
+                 return HttpResponse(("Password must contain at least one special character: " + special_characters),
+                            )
+    
         # Check if the username already exists
         if User.objects.filter(username=username).exists():
             return HttpResponse("Username already taken! Please choose another.")
@@ -31,7 +51,7 @@ def SignupPage(request):
 
         # Create the new user
         User.objects.create_user(username=username, email=email, password=pass1)
-        return redirect('Login')  # Redirect to login after successful signup
+        return redirect('login')  # Redirect to login after successful signup
 
     return render(request, 'Signup.html')
 
@@ -59,4 +79,5 @@ def LoginPage(request):
 # Logout page
 def LogoutPage(request):
     logout(request)
-    return redirect('Login')
+    return redirect('login')
+
